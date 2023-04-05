@@ -1,0 +1,34 @@
+{
+  "name": "chatbot",
+  "version": "1.0.0",
+  "description": "Chatbot client coded in javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "nodemon": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/haydarselmi/Chatbot_Project.git"
+  },
+  "keywords": [
+    "chatbot",
+    "javascript",
+    "chat",
+    "webclient"
+  ],
+  "author": "Haydar SELMI",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/haydarselmi/Chatbot_Project/issues"
+  },
+  "homepage": "https://github.com/haydarselmi/Chatbot_Project#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^5.1.0",
+    "mongoose": "^7.0.3",
+    "nodemon": "^2.0.22",
+    "pug": "^3.0.2",
+    "rivescript": "^2.2.1"
+  }
+}
