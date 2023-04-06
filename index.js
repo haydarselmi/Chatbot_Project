@@ -4,7 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const userRoutes = require('./src/routes/userRoutes.js');
-
+const chatbotRoutes = require('./src/routes/chatbotRoutes.js');
 /* Express configuration of the routes the html engine and folders */
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 app.set('views', 'src/views');
 app.set('view engine', 'pug');
+app.use('/chatbots', chatbotRoutes);
 app.use('/users', userRoutes);
 /* Express configuration of the routes the html engine and folders */
 

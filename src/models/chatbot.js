@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Profile = require('profile.js');
+const Profile = require('./profile.js');
 
 const chatbotSchema = new mongoose.Schema({
 	name: {
@@ -11,7 +11,7 @@ const chatbotSchema = new mongoose.Schema({
 		required: true,
 	},
 	profiles: {
-		type: [Profile],
+		type: [Profile.schema],
 		required: true,
 	},
 });

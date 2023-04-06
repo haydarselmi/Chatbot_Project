@@ -5,13 +5,15 @@ const Profile = require('../models/profile.js');
  * @param {} userId
  * @returns
  */
-exports.createProfile = async (userId) => {
+async function createProfile(userId) {
 	try {
-		const profile = new Profile({ user_id: userId, user_params: {} });
+		const profile = new Profile({ user_id: userId });
 		await profile.save();
 		return profile;
 	}
 	catch (error) {
 		console.error('Cannot create in the database the Profile');
 	}
-};
+}
+
+module.exports = { createProfile };

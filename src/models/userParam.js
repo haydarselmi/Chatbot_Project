@@ -1,4 +1,4 @@
-const mongoose = require('moongoose');
+const mongoose = require('mongoose');
 
 const userParamSchema = new mongoose.Schema({
 	parameter_name: {

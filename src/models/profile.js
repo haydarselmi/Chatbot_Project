@@ -1,5 +1,5 @@
-const mongoose = require('moongoose');
-const UserParam = require('userParam.js');
+const mongoose = require('mongoose');
+const UserParam = require('./userParam.js');
 
 const profileSchema = new mongoose.Schema({
 	user_id: {
@@ -7,7 +7,7 @@ const profileSchema = new mongoose.Schema({
 		required: true,
 	},
 	user_params: {
-		type: [UserParam],
+		type: [UserParam.schema],
 	},
 });
 

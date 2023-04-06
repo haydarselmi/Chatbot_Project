@@ -11,10 +11,11 @@ const profileController = require('./profileController.js');
  */
 exports.createChatbot = async (req, res) => {
 	try {
-		const profile = profileController.createProfile(req.body.userId);
+		console.log(req.body);
+		const profile = await profileController.createProfile(req.body.userId);
 		const chatbot = new Chatbot({
 			name: req.body.name,
-			brains: 'standard.rive',
+			brains_paths: ['standard.rive'],
 			profiles: [profile],
 		});
 		await chatbot.save();
@@ -33,7 +34,7 @@ exports.createChatbot = async (req, res) => {
  */
 exports.getChatbot = async (req, res) => {
 	try {
-		const chatbot = await Chatbot.find({ _id: req.body.chatbotId });
+		const chatbot = await Chatbot.find({ _id: req.params.id });
 		if (chatbot.length != 0) {
 			res.status(200).send(chatbot);
 		}
