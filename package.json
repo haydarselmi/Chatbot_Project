@@ -30,5 +30,8 @@
     "nodemon": "^2.0.22",
     "pug": "^3.0.2",
     "rivescript": "^2.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.37.0"
   }
 }

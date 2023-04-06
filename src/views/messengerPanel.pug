@@ -1,0 +1,12 @@
+extends layout 
+
+block content
+    h2 CHATBOT NAME : 
+    div.messaging-history 
+        ul
+            li message 1
+            li message 2
+            li message 3
+    div.message-bar
+        input(type="text", placeholder="Type your message here...", value="message")
+        input(type="button", value="Send")
