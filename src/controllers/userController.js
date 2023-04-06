@@ -3,7 +3,7 @@ const User = require("../models/user.js");
 exports.verifyUserConnection = async (req, res) => {
   try {
     const user = await User.find({username: req.body.username, password: req.body.password});
-    if(user.length == 0) {
+    if(user.length != 0) {
       res.status(200).send(user);
     } else {
       res.status(400).send("Error of username or password");
