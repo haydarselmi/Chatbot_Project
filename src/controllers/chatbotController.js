@@ -64,6 +64,26 @@ exports.deleteChatbot = async (req, res) => {
 };
 
 /**
+ * Patches the brains of the Chatbot
+ * by adding a new brain path into the brains of the chatbot
+ * of the given ID.
+ * @param {*} req
+ * @param {*} res
+ */
+exports.patchAddChatbotBrains = async (req, res) => {
+	try {
+		const chatbot = await Chatbot.findOne({ _id: req.params.id });
+		const brains = Object.values(chatbot.brains_paths);
+		brains.push(req.body.brain);
+		await Chatbot.updateOne({ _id: req.params.id, brains_paths: brains });
+		res.status(200).send(chatbot);
+	}
+	catch (error) {
+		res.status(400).send(error);
+	}
+};
+
+/**
  * Gets all the chatbots in the database.
  * @param {*} req
  * @param {*} res

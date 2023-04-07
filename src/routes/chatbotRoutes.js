@@ -8,5 +8,6 @@ router.post('/', chatbotController.createChatbot);
 router.get('/:id', chatbotController.getChatbot);
 router.get('/', chatbotController.getAllChatbots);
 router.delete('/:id', chatbotController.deleteChatbot);
+router.patch('/brains/:id', chatbotController.patchAddChatbotBrains);
 
 module.exports = router;
