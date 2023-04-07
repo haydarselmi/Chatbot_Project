@@ -72,10 +72,11 @@ exports.deleteChatbot = async (req, res) => {
  */
 exports.patchAddChatbotBrains = async (req, res) => {
 	try {
-		const chatbot = await Chatbot.findOne({ _id: req.params.id });
+		let chatbot = await Chatbot.findOne({ _id: req.params.id });
 		const brains = Object.values(chatbot.brains_paths);
 		brains.push(req.body.brain);
 		await Chatbot.updateOne({ _id: req.params.id, brains_paths: brains });
+		chatbot = await Chatbot.findOne({ _id: req.params.id });
 		res.status(200).send(chatbot);
 	}
 	catch (error) {
