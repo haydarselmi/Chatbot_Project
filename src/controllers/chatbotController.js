@@ -48,6 +48,22 @@ exports.getChatbot = async (req, res) => {
 };
 
 /**
+ * Deletes the chatbot of the given ID.
+ * Sends back a notification message if deleted successfully.
+ * @param {*} req
+ * @param {*} res
+*/
+exports.deleteChatbot = async (req, res) => {
+	try {
+		await Chatbot.deleteOne({ _id: req.params.id });
+		res.status(200).send(`Chatbot of the given ${req.params.id} has been deleted`);
+	}
+	catch (error) {
+		res.status(400).send(error);
+	}
+};
+
+/**
  * Gets all the chatbots in the database.
  * @param {*} req
  * @param {*} res

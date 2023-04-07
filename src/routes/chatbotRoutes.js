@@ -7,5 +7,6 @@ const router = express.Router();
 router.post('/', chatbotController.createChatbot);
 router.get('/:id', chatbotController.getChatbot);
 router.get('/', chatbotController.getAllChatbots);
+router.delete('/:id', chatbotController.deleteChatbot);
 
 module.exports = router;
