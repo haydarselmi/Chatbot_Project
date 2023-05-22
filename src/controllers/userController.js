@@ -4,7 +4,13 @@ exports.verifyUserConnection = async (req, res) => {
 	try {
 		const user = await User.find({ username: req.body.username, password: req.body.password });
 		if (user.length != 0) {
-			res.render('chatbotPanel');
+			global.loggedUser = user;
+			if (global.loggedUser.isAdmin != false) {
+				res.render('chatbotPanel');
+			}
+			else {
+				res.render('chatbotMessenger');
+			}
 		}
 		else {
 			res.status(400).send('Error of username or password');
@@ -17,9 +23,11 @@ exports.verifyUserConnection = async (req, res) => {
 
 exports.createUser = async (req, res) => {
 	try {
+		req.body.isAdmin = false;
 		const user = new User(req.body);
 		await user.save();
-		res.status(201).send(user);
+		global.loggedUser = user;
+		res.status(201).send(global.loggedUser);
 	}
 	catch (error) {
 		res.status(400).send(error);

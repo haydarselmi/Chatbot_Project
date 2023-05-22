@@ -7,6 +7,7 @@ const userRoutes = require('./src/routes/userRoutes.js');
 const chatbotRoutes = require('./src/routes/chatbotRoutes.js');
 /* Express configuration of the routes the html engine and folders */
 const app = express();
+global.loggedUser = null;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -37,7 +38,14 @@ db.once('open', function() {
 /* mongoose MangoDB database connection and configuration */
 
 app.get('/', (req, res) => {
-	res.render('login');
+	if (global.loggedUser != null) {
+		if (global.loggedUser.isAdmin != false) {
+			res.render('chatbotPanel');
+		}
+	}
+	else {
+		res.render('login');
+	}
 });
 
 app.listen(3000, function() {

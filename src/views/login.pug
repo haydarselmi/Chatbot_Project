@@ -1,8 +1,15 @@
 extends layout 
 
 block content 
+    h2 Connexion a un compte utilisateur normal ou administrateur
     div.login-form
         form(action="/users", method="post") 
+            input(type="string", name="username", placeholder="Enter username here", required="true")
+            input(type="password", name="password", placeholder="Enter your password here", required="true")
+            input(type="submit", value="connect")
+    h2 Crééer un compte utilisateur
+    div.create-user-form
+        form(action="/users/new", method="post") 
             input(type="string", name="username", placeholder="Enter username here", required="true")
             input(type="password", name="password", placeholder="Enter your password here", required="true")
             input(type="submit", value="connect")

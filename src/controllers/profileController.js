@@ -5,7 +5,7 @@ const Profile = require('../models/profile.js');
  * @param {} userId
  * @returns
  */
-exports.createProfile =async (req,res)=> {
+exports.createProfile = async (req, res)=> {
 	try {
 		console.log(req.body);
 		const profile = new Profile({ user_id: userId });
@@ -15,7 +15,8 @@ exports.createProfile =async (req,res)=> {
 	catch (error) {
 		console.error('Cannot create in the database the Profile');
 	}
-}
+};
+
 /**
  * Gets the Profile of the given ID.
  * Sends bach the Profile object if found.
@@ -41,7 +42,7 @@ exports.getProfile = async (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-exports.patchProfile = async(req,res) =>{
+exports.patchProfile = async (req, res) => {
 	try {
 		let profile = await Profile.findOne({ _id: req.params.id });
 		const userParams = Object.values(profile.user_params);
@@ -50,10 +51,10 @@ exports.patchProfile = async(req,res) =>{
 		profile = await Profile.findOne({ _id: req.params.id });
 		res.status(200).send(profile);
 	}
-	catch (error){
+	catch (error) {
 		res.status(400).send(error);
 	}
-}
+};
 
 /**
  * Deletes the profile of the given ID.
@@ -63,7 +64,7 @@ exports.patchProfile = async(req,res) =>{
 */
 exports.deleteProfile = async (req, res) => {
 	try {
-		await profile.deleteOne({ _id: req.params.id });
+		await Profile.deleteOne({ _id: req.params.id });
 		res.status(200).send(`profile of the given ${req.params.id} has been deleted`);
 	}
 	catch (error) {

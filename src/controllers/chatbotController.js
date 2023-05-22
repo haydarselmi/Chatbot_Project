@@ -11,15 +11,21 @@ const profileController = require('./profileController.js');
  */
 exports.createChatbot = async (req, res) => {
 	try {
-		console.log(req.body);
-		const profile = await profileController.createProfile(req.body.userId);
-		const chatbot = new Chatbot({
-			name: req.body.name,
-			brains_paths: ['standard.rive'],
-			profiles: [profile],
-		});
-		await chatbot.save();
-		res.status(200).send(chatbot);
+		console.log(global.loggedUser);
+		if (global.loggedUser != null && global.loggedUser.isAdmin != false) {
+			console.log(req.body);
+			const profile = await profileController.createProfile(req.body.userId);
+			const chatbot = new Chatbot({
+				name: req.body.chatbot_name,
+				brains_paths: ['standard.rive'],
+				profiles: [profile],
+			});
+			await chatbot.save();
+			res.status(200).send(chatbot);
+		}
+		else {
+			res.status(400).send('Can\'t create the chatbot if not logged with an admin account');
+		}
 	}
 	catch (error) {
 		res.status(400).send(error);
