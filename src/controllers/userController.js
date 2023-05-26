@@ -3,6 +3,12 @@ const bcrypt = require('bcrypt');
 
 exports.verifyUserConnection = async (req, res) => {
 	try {
+		const hashedPWD = await bcrypt.genSalt(10)
+			.then(salt => {
+				return bcrypt.hash(req.body.password, salt);
+			})
+			.catch(err => console.error(err.message));
+		req.body.password = hashedPWD;
 		const user = await User.find({ username: req.body.username, password: req.body.password });
 		if (user.length != 0) {
 			global.loggedUser = user;
@@ -32,7 +38,7 @@ exports.verifyEmail = async (name) => {
 		return true;
 	}
 	catch (error) {
-		console.error('L\'email est déjà présent');
+		console.error('Email already used');
 	}
 };
 
@@ -42,7 +48,7 @@ exports.createUser = async (req, res) => {
 		// Hasing password for storage
 		const available = await this.verifyEmail(req.body.username);
 		if (!available) {
-			res.status(400).send('L\'email est déjà inscrit');
+			res.status(400).send('Email already used');
 			return null;
 		}
 		const hashedPWD = await bcrypt.genSalt(10)
