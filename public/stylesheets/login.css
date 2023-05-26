@@ -1,0 +1,36 @@
+.authentication-forms-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 98vh;
+}
+
+.authentication-forms-container div {
+    min-width: 400px;
+    max-width: 50vh;
+    margin: 0 auto 0 auto;
+}
+
+.authentication-forms-container .login-form, .authentication-forms-container .create-user-form {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 10px;
+
+}
+
+.authentication-forms-container form input {
+    margin-bottom: 15px;
+    min-height: 25px;
+    border-radius: 100px;
+    padding: 5px;
+    box-shadow: 0px 4px 5px 1px rgba(0, 0, 0, 0.2);
+    text-indent: 5px;
+}
+
+.authentication-forms-container form input[type="submit"] {
+    min-width: 150px;
+    max-width: fit-content;
+    background-color: #04eeb8;
+    margin: 0 auto 0 auto;
+}
