@@ -1,4 +1,5 @@
 const User = require('../models/user.js');
+const bcrypt = require('bcrypt');
 
 exports.verifyUserConnection = async (req, res) => {
 	try {
@@ -21,9 +22,35 @@ exports.verifyUserConnection = async (req, res) => {
 	}
 };
 
+exports.verifyEmail = async (name) => {
+	try {
+		const user = await User.findOne({ username: name });
+		console.log(user);
+		if (user != null) {
+			return false;
+		}
+		return true;
+	}
+	catch (error) {
+		console.error('L\'email est déjà présent');
+	}
+};
+
 exports.createUser = async (req, res) => {
 	try {
 		req.body.isAdmin = false;
+		// Hasing password for storage
+		const available = await this.verifyEmail(req.body.username);
+		if (!available) {
+			res.status(400).send('L\'email est déjà inscrit');
+			return null;
+		}
+		const hashedPWD = await bcrypt.genSalt(10)
+			.then(salt => {
+				return bcrypt.hash(req.body.password, salt);
+			})
+			.catch(err => console.error(err.message));
+		req.body.password = hashedPWD;
 		const user = new User(req.body);
 		await user.save();
 		global.loggedUser = user;
