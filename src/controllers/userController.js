@@ -3,21 +3,22 @@ const bcrypt = require('bcrypt');
 
 exports.verifyUserConnection = async (req, res) => {
 	try {
-		const hashedPWD = await bcrypt.genSalt(10)
-			.then(salt => {
-				return bcrypt.hash(req.body.password, salt);
-			})
-			.catch(err => console.error(err.message));
-		req.body.password = hashedPWD;
-		const user = await User.find({ username: req.body.username, password: req.body.password });
+		const user = await User.find({ username: req.body.username });
 		if (user.length != 0) {
-			global.loggedUser = user;
-			if (global.loggedUser.isAdmin != false) {
-				res.render('chatbotPanel');
-			}
-			else {
-				res.render('chatbotMessenger');
-			}
+			await bcrypt.compare(req.body.password, user[0].password, function(err, result) {
+				if (result) {
+					global.loggedUser = user;
+					if (global.loggedUser.isAdmin != false) {
+						res.render('chatbotPanel');
+					}
+					else {
+						res.render('chatbotMessenger');
+					}
+				}
+				else {
+					res.status(400).send('Wrong password');
+				}
+			});
 		}
 		else {
 			res.status(400).send('Error of username or password');
