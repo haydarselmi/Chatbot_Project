@@ -7,3 +7,8 @@ block content
             input(type="string", name="chatbot_name", placeholder="Enter the chatbot name here", required="true")
             input(type="string", name="path", required="true", value="standard.rive", hidden)
             input(type="submit", value="create the chatbot")
+    h2 Available bots
+    div.available-bots 
+        ul#bots
+
+    script(src="/scripts/bots-loader.js")

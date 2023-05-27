@@ -3,11 +3,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const userRoutes = require('./src/routes/userRoutes.js');
 const chatbotRoutes = require('./src/routes/chatbotRoutes.js');
 /* Express configuration of the routes the html engine and folders */
 const app = express();
+app.use(cors());
 global.loggedUser = null;
+global.firstUnusedPort = 3001;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -46,6 +49,11 @@ app.get('/', (req, res) => {
 	else {
 		res.render('login');
 	}
+});
+
+// Displays the messengerPanel that is attached to a websocket and a botId
+app.get('/messengerPanel/:bot_id/:port', (req, res) => {
+	res.render('messengerPanel', { port: req.params.port, bot_id: req.params.bot_id });
 });
 
 app.listen(3000, function() {

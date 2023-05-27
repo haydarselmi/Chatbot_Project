@@ -2,11 +2,13 @@ extends layout
 
 block content
     h2 CHATBOT NAME : 
+        p#port #{port}
+        p#bot_id #{bot_id}
     div.messaging-history 
-        ul
-            li message 1
-            li message 2
-            li message 3
+        ul#messages-list
+            
     div.message-bar
-        input(type="text", placeholder="Type your message here...", value="message")
-        input(type="button", value="Send")
+        input#message-input(type="text", placeholder="Type your message here...", value='')
+        input#send-button(type="button", value="Send")
+
+    script(src="/scripts/messenger.js")

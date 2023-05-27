@@ -10,4 +10,7 @@ router.get('/', chatbotController.getAllChatbots);
 router.delete('/:id', chatbotController.deleteChatbot);
 router.patch('/brains/:id', chatbotController.patchAddChatbotBrains);
 
+router.get('/mouth/:id', chatbotController.socketMouthToChatbot);
+// router.post('/mouth/message/:id', chatbotController.messageChatbot);
+
 module.exports = router;
