@@ -11,10 +11,8 @@ const profileController = require('./profileController.js');
  */
 exports.createChatbot = async (req, res) => {
 	try {
-		console.log(global.loggedUser);
 		if (global.loggedUser != null && global.loggedUser.isAdmin != false) {
-			console.log(req.body);
-			const profile = await profileController.createProfile(req.body.userId);
+			const profile = await profileController.createProfile(global.loggedUser._id);
 			const chatbot = new Chatbot({
 				name: req.body.chatbot_name,
 				brains_paths: ['standard.rive'],

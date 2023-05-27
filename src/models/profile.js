@@ -3,7 +3,7 @@ const UserParam = require('./userParam.js');
 
 const profileSchema = new mongoose.Schema({
 	user_id: {
-		type: Number,
+		type: mongoose.ObjectId,
 		required: true,
 	},
 	user_params: {

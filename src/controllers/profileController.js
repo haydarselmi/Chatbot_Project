@@ -1,4 +1,5 @@
 const Profile = require('../models/profile.js');
+const UserParam = require('../models/userParam.js');
 
 /**
  * Creates a Profile with no user parameters with the given userId.
@@ -7,8 +8,15 @@ const Profile = require('../models/profile.js');
  */
 exports.createProfile = async (req, res)=> {
 	try {
-		console.log(req.body);
-		const profile = new Profile({ user_id: userId });
+		const param = new UserParam({
+			parameter_name: 'isAdmin',
+			parameter_value: global.loggedUser[0].isAdmin == true ? 'true' : 'false',
+		});
+		await param.save();
+		const profile = new Profile({
+			user_id: global.loggedUser[0]._id,
+			user_params: [param],
+		});
 		await profile.save();
 		return profile;
 	}
