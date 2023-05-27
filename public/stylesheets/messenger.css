@@ -1,3 +1,3 @@
 .messaging-history #messages-list .user-message {
-    float: right;
+    text-align: right;
 }
