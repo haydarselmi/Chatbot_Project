@@ -9,6 +9,7 @@ const chatbotRoutes = require('./src/routes/chatbotRoutes.js');
 /* Express configuration of the routes the html engine and folders */
 const app = express();
 app.use(cors());
+global.rootDir = __dirname;
 global.loggedUser = null;
 global.firstUnusedPort = 3001;
 app.use(bodyParser.urlencoded({ extended: false }));

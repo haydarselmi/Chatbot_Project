@@ -2,6 +2,7 @@ const Chatbot = require('../models/chatbot.js');
 const profileController = require('./profileController.js');
 const WebSocket = require('ws');
 const RiveScript = require('rivescript');
+const fs = require('fs');
 
 /**
  * Creates a chatbot with a given name with the standard brain.
@@ -142,5 +143,32 @@ exports.getAllChatbots = async (req, res) => {
 	}
 	catch (error) {
 		res.status(500).send(error);
+	}
+};
+
+/**
+ * Gets all the Rivescript brains available for the chat
+ * @param {*} req
+ * @param {*} res
+ */
+exports.getAllBrains = async (req, res) => {
+	try {
+		fs.readdir(global.rootDir + '/brains', (err, files) => {
+			if (err) {
+				res.stauts(500).send({
+					error_oject: err,
+				});
+			}
+			else {
+				res.status(200).send({
+					brains_list: files,
+				});
+			}
+		});
+	}
+	catch (error) {
+		res.status(500).send({
+			error_oject: error,
+		});
 	}
 };
