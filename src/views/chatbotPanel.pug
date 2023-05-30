@@ -1,14 +1,20 @@
 extends layout 
 
 block content
-    h2 CHATBOT CREATION AND CONFIGURATION PANEL
-    div.create-chatbot-form
-        form(action="/chatbots", method="post") 
-            input(type="string", name="chatbot_name", placeholder="Enter the chatbot name here", required="true")
-            input(type="string", name="path", required="true", value="standard.rive", hidden)
-            input(type="submit", value="create the chatbot")
-    h2 Available bots
-    div.available-bots 
-        ul#bots
+    div.chatbot-panel-container
+        div.create-chatbot-form
+            div.form-container
+                div
+                    h2 Chatbot creation and configuraiton panel
+                form(action="/chatbots", method="post") 
+                    input(type="string", name="chatbot_name", placeholder="Enter the chatbot name here", required="true")
+                    input(type="string", name="path", required="true", value="standard.rive", hidden)
+                    input(type="submit", value="create the chatbot")
+        div.available-bots
+            div.bots-container
+                div
+                    h2 Available bots
+                div
+                    ul#bots
 
     script(src="/scripts/bots-loader.js")

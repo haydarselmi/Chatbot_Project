@@ -1,0 +1,67 @@
+.chatbot-panel-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.chatbot-panel-container > div {
+    margin-bottom: 20px;
+}
+
+.create-chatbot-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
+}
+
+.create-chatbot-form div, .available-bots .bots-container {
+    min-width: 620px;
+    max-width: 50vh;
+    margin: 0 auto 0 auto;
+}
+
+.create-chatbot-form .form-container, .available-bots .bots-container {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.create-chatbot-form div h2 {
+    text-align: center;
+}
+
+.create-chatbot-form div form input {
+    margin-bottom: 15px;
+    min-height: 25px;
+    border-radius: 100px;
+    padding: 5px;
+    box-shadow: 0px 4px 5px 1px rgba(0, 0, 0, 0.2);
+    text-indent: 5px;
+}
+
+.create-chatbot-form div form input[type="submit"] {
+    min-width: 150px;
+    max-width: fit-content;
+    background-color: #04eeb8;
+    margin: 0 auto 15px auto;
+}
+
+.available-bots {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
+}
+
+.available-bots .bots-container div h2 {
+    text-align: center;
+}
+
+.available-bots .bots-container div #bots {
+    list-style: none;
+}
+
+.available-bots .bots-container div #bots li:hover {
+    cursor: pointer;
+}
