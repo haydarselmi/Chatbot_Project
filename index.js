@@ -52,8 +52,12 @@ app.get('/', (req, res) => {
 });
 
 // Displays the messengerPanel that is attached to a websocket and a botId
-app.get('/messengerPanel/:bot_id/:port', (req, res) => {
-	res.render('messengerPanel', { port: req.params.port, bot_id: req.params.bot_id });
+app.get('/messengerPanel/:bot_name/:bot_id/:port', (req, res) => {
+	res.render('messengerPanel', {
+		chatbot_name: req.params.bot_name,
+		port: req.params.port,
+		bot_id: req.params.bot_id,
+	});
 });
 
 app.listen(3000, function() {

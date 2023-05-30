@@ -1,6 +1,21 @@
 /* .messaging-history #messages-list .user-message {
     text-align: right;
 } */
+
+.messaging-container {
+    margin: 0 auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 400px;
+    max-width: 90vw;
+}
+
+.messaging-container .bot-messenger-info {
+    display: flex;
+    flex-direction: row;
+}
+
 .messaging-history .message-item.user-message {
     width: fit-content;
     max-width: 300px;
@@ -36,16 +51,34 @@
     list-style: none;
     padding-left: 0px;
 }
-.message-bar #message-input {
-    border-radius: 50px;
-    width: 92%;
+
+/* Message bar */
+
+.message-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-.messaging-container {
-    margin: 0 auto 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-width: 400px;
-    max-width: 90vw;
+.message-bar input {
+    line-height: 20px;
+}
+
+.message-bar div #message-input {
+    border-radius: 50px;
+    width: 100%;
+    text-indent: 20px;
+}
+
+.message-bar .text-input {
+    flex-grow: 1;
+    padding-right: 20px;
+}
+
+.message-bar .send-message-container #send-button {
+    min-height: 20px;
+    min-width: 100px;
+    max-width: fit-content;
+    border-radius: 50px;
+    background-color: #04eeb8;
 }

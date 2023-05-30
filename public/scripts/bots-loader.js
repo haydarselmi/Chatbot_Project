@@ -17,7 +17,7 @@ try {
 						.then(response => response.json())
 						.then(response => {
 							console.log(response);
-							location.href = `http://localhost:3000/messengerPanel/${response.bot_id}/${response.port}`;
+							location.href = `http://localhost:3000/messengerPanel/${response.chatbot.name}/${response.bot_id}/${response.port}`;
 						})
 						.catch (error => {
 							console.error(error);

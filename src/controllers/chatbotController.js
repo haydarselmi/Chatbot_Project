@@ -82,7 +82,7 @@ exports.socketMouthToChatbot = async (req, res) => {
 				});
 			});
 			global.firstUnusedPort++;
-			res.status(200).send({ port: chatPort, bot_id: req.params.id });
+			res.status(200).send({ chatbot: chatbot, port: chatPort, bot_id: req.params.id });
 		}
 		else {
 			res.status(400).send(`The chatbot of the given ID ${req.body.chatbotId} doesn't exist`);

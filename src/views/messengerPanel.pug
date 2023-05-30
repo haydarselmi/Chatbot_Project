@@ -15,14 +15,28 @@
 extends layout 
 
 block content
-    h2 CHATBOT NAME : 
-        p#port #{port}
-        p#bot_id #{bot_id}
+    div.messaging-container
+        h2 Chatbot name : #{chatbot_name}
+        div.bot-messenger-info 
+            div
+                b
+                    h4 Port de la communication :
+            div
+                h4#port #{port}
+        div.bot-messenger-info
+            div
+                b
+                    h4 Identifiant du bot :
+            div
+                h4#bot_id #{bot_id}
+
     div.messaging-container
         div.messaging-history 
             ul#messages-list
         div.message-bar
-            input#message-input(type="text", placeholder="Type your message here...", value='')
-            input#send-button(type="button", value="Send")
+            div.text-input
+                input#message-input(type="text", placeholder="Type your message here...", value='')
+            div.send-message-container
+                input#send-button(type="button", value="Send")
 
     script(src="/scripts/messenger.js")
