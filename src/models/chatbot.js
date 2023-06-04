@@ -15,6 +15,16 @@ const chatbotSchema = new mongoose.Schema({
 		type: [Profile.schema],
 		required: true,
 	},
+	discord_bot_token: {
+		type: String,
+		required: true,
+		default: '',
+	},
+	access: {
+		type: Boolean,
+		required: true,
+		default: false,
+	},
 });
 
 const Chatbot = mongoose.model('Chatbot', chatbotSchema);
