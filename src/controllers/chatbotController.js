@@ -20,7 +20,7 @@ exports.createChatbot = async (req, res) => {
 				name: req.body.chatbot_name,
 				brains_paths: ['brains/standard.rive'],
 				profiles: [profile],
-				discord_bots_token: null,
+				discord_bots_token: '',
 				access: false,
 			});
 			await chatbot.save();
@@ -122,9 +122,7 @@ exports.deleteChatbot = async (req, res) => {
 exports.patchAddChatbotBrains = async (req, res) => {
 	try {
 		let chatbot = await Chatbot.findOne({ _id: req.params.id });
-		const brains = Object.values(chatbot.brains_paths);
-		brains.push(req.body.brain);
-		await Chatbot.updateOne({ _id: req.params.id, brains_paths: brains });
+		await Chatbot.updateOne({ _id: req.params.id }, { brains_paths: req.body.brains.split(',') });
 		chatbot = await Chatbot.findOne({ _id: req.params.id });
 		res.status(200).send(chatbot);
 	}
@@ -162,6 +160,7 @@ exports.getAllBrains = async (req, res) => {
 				});
 			}
 			else {
+				files = files.map(file => 'brains/' + file);
 				res.status(200).send({
 					brains_list: files,
 				});

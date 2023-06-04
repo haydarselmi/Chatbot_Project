@@ -19,6 +19,23 @@ block content
                         each bot in bots ? bots : []
                             li
                                 a(id=bot._id, class='chatbot-element')= bot.name
+                                button.bot-modify-button(value=bot._id) Modifier
+                                if bot.access
+                                    div.chatbot-element-toggler
+                                        div.badge Acces discord 
+                                        label(class='toggler-wrapper style-1')
+                                            input(type='checkbox')
+                                            div.toggler-slider
+                                                div.toggler-knob
+                div#chatbot-modify-modal(hidden=true)
+                    h2 chatbot modification
+                    p bot Id : 
+                        b#modify-bot-id
+                    select(name='brains', id='brain-select')
+                    p#selected-brains
+                    input(type="string", placeholder='Enter here your discord bot token here')
+                    button#modify-validate-button Sauvegarder
+
 
 
 

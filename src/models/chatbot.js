@@ -17,12 +17,10 @@ const chatbotSchema = new mongoose.Schema({
 	},
 	discord_bot_token: {
 		type: String,
-		required: true,
 		default: '',
 	},
 	access: {
 		type: Boolean,
-		required: true,
 		default: false,
 	},
 });
