@@ -9,7 +9,11 @@ exports.verifyUserConnection = async (req, res) => {
 				if (result) {
 					global.loggedUser = user;
 					if (global.loggedUser.isAdmin != false) {
-						res.render('chatbotPanel');
+						fetch('http://localhost:3000/chatbots', { method: 'GET' })
+							.then(response => response.json())
+							.then(response => {
+								res.render('chatbotPanel', { bots: response });
+							});
 					}
 					else {
 						res.render('chatbotMessenger');

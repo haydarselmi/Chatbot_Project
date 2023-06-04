@@ -16,5 +16,10 @@ block content
                     h2 Available bots
                 div
                     ul#bots
+                        each bot in bots ? bots : []
+                            li
+                                a(id=bot._id, class='chatbot-element')= bot.name
+
+
 
     script(src="/scripts/bots-loader.js")

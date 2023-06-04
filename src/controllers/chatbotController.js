@@ -20,6 +20,8 @@ exports.createChatbot = async (req, res) => {
 				name: req.body.chatbot_name,
 				brains_paths: ['brains/standard.rive'],
 				profiles: [profile],
+				discord_bots_token: null,
+				access: false,
 			});
 			await chatbot.save();
 			res.status(200).send(chatbot);
