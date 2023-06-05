@@ -95,7 +95,8 @@ try {
 		})
 			.then(response => response.json())
 			.then(response => {
-				console.log(response);
+				modifyModal.hidden = !modifyModal.hidden;
+				alert('The chatbot has been edited');
 			});
 	});
 }

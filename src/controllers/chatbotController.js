@@ -79,8 +79,12 @@ exports.socketMouthToChatbot = async (req, res) => {
 			const server = new WebSocket.Server({ port: chatPort });
 			server.on('connection', socket => {
 				socket.on('message', message => {
-					global.loggedUser.bot.reply(global.loggedUser.username, message).then(function(reply) {
+					global.loggedUser.bot.reply('haydar', message).then(function(reply) {
 						socket.send(reply);
+						global.loggedUser.bot.getUservars()
+							.then(function(result) {
+								console.log(result.haydar);
+							});
 					});
 				});
 			});

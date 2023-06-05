@@ -20,7 +20,7 @@ block content
                             li
                                 a(id=bot._id, class='chatbot-element')= bot.name
                                 button.bot-modify-button(value=bot._id) Modifier
-                                if bot.access
+                                if bot.access =true
                                     div.chatbot-element-toggler
                                         div.badge Acces discord 
                                         label(class='toggler-wrapper style-1')
